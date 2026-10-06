@@ -1,0 +1,50 @@
+{
+  "name": "dsh-im-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Remote-control DeepSeek Harness from WeChat / QQ bot chats: session list with numbers, enter by number, history, model & reasoning effort switching, stop, and artifact delivery.",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "vendor",
+    "cordis.patch.yml",
+    "README.md",
+    "BINDING.md"
+  ],
+  "scripts": {
+    "test": "node scripts/test-apply.mjs && node scripts/test-host.mjs && node scripts/test-media.mjs && node scripts/test-qq-upload.mjs && node scripts/test-wechat-upload.mjs",
+    "test:host": "node scripts/test-host.mjs",
+    "test:apply": "node scripts/test-apply.mjs",
+    "test:media": "node scripts/test-media.mjs",
+    "test:upload": "node scripts/test-qq-upload.mjs && node scripts/test-wechat-upload.mjs",
+    "test:live:qq": "node scripts/test-qq-live.mjs --seconds 60",
+    "test:live:wechat": "node scripts/test-wechat-live.mjs --seconds 900",
+    "audit": "node scripts/audit-secrets.mjs",
+    "install:profile": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install.ps1"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "wechat",
+    "qq",
+    "im",
+    "bot"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  }
+}

@@ -1,0 +1,33 @@
+# 依赖（插件零运行时依赖，这个目录只在本地测试时出现）
+node_modules/
+
+# ---- 凭据与运行状态：永远不要提交 ----
+# 正常情况下这些文件位于 %DSH_HOME%\storages\，不在插件目录里；
+# 这里再挡一层，防止有人把 DSH_HOME 指到插件目录、或手工拷贝进来。
+im_bridge_creds.json
+im_bridge_state.json
+im_bridge_status.json
+im_bridge_media.log
+im_bridge_qr.txt
+im_bridge_qr.html
+im_bridge_creds.json.tmp-*
+*.secret
+.env
+.env.*
+
+# 安装脚本产生的备份
+_backup_*/
+
+# 运行日志
+*.log
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时文件
+*.tmp
+*.bak

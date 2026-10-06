@@ -1,0 +1,8 @@
+# dsh-im-bridge bundle patch: mount the host plugin row.
+#
+# The plugin is host-only for now (no browser half, no Typert wire contracts):
+# it lives entirely in the Host process, talks to the WeChat/QQ bot APIs
+# directly, and drives sessions through ctx.sessionController / ctx.sessionQuery.
+- insert:
+    - id: dsh-im-bridge
+      name: dsh-im-bridge

@@ -1,0 +1,11 @@
+# 仓库内统一用 LF；Windows 检出时不再触发全仓库 CRLF 重写。
+* text=auto eol=lf
+
+# 明确标成文本，避免被当成二进制
+*.js   text
+*.mjs  text
+*.cjs  text
+*.json text
+*.md   text
+*.yml  text
+*.ps1  text
