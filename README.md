@@ -339,3 +339,41 @@ npm test
 | 微信扫码后没反应 | 账号没被灰度到机器人功能；或 `ilinkai.weixin.qq.com` 不通 |
 | `/im status` 里 qq 是 unconfigured | 没填 `config.qq.appId / appSecret` |
 | 某个编号进不去 | 会话列表变了，重新发 `/会话列表` 刷新编号 |
+
+---
+
+## 六、维护与贡献
+
+插件**零运行时依赖**（二维码库是内置的单文件 `vendor/qrcode-generator.cjs`），
+克隆下来直接就能跑测试，不需要 `npm install`。
+
+### 改之前先跑测试
+
+```powershell
+npm test          # 5 个离线套件，154 条断言，不需要 DSH / 网络 / 账号
+```
+
+### 提交前一定要跑密钥审计
+
+```powershell
+npm run audit
+```
+
+它会把**你本机** `%DSH_HOME%\storages\` 里的 appId / appSecret / bot token / openid
+全部读出来，逐个在仓库文件里搜一遍（含 base64 与大小写变形），
+顺带检查有没有本机绝对路径混进文档。**只报告位置，不打印密钥。**
+
+凭据本来就存在 `%DSH_HOME%` 下、不在仓库里；这个脚本是防止有人不小心把日志或导出文件拷进来。
+
+### 如果 `git push` 连不上 github.com
+
+某些网络环境只放行 `api.github.com`，`github.com:443` 会被重置，表现为
+`Recv failure: Connection was reset`。这时可以用仓库自带的脚本走 Git Data API：
+
+```powershell
+$env:GH_TOKEN = "<有 repo 权限的 token>"
+node scripts/push-via-api.mjs "feat: 你的提交说明"
+```
+
+效果等同于一次 push（blob → tree → commit → ref），空仓库也能引导。
+细节和注意事项见脚本头部注释。**token 用完记得吊销。**

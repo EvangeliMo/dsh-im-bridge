@@ -26,6 +26,7 @@
     "test:live:qq": "node scripts/test-qq-live.mjs --seconds 60",
     "test:live:wechat": "node scripts/test-wechat-live.mjs --seconds 900",
     "audit": "node scripts/audit-secrets.mjs",
+    "push:api": "node scripts/push-via-api.mjs",
     "install:profile": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install.ps1"
   },
   "keywords": [
